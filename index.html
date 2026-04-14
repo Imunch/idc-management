@@ -299,7 +299,9 @@ body{font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;background:va
 .sprint-col-header.col-active{border-bottom-color:var(--brand)}
 .sprint-col-header.col-done{border-bottom-color:var(--green)}
 .sprint-col-count{margin-left:auto;font-weight:400;color:var(--text-tertiary)}
-.sprint-card{background:var(--white);border:1px solid var(--border);border-left:3px solid var(--border);border-radius:var(--radius);padding:10px 12px;margin-bottom:6px;cursor:pointer;transition:box-shadow .1s}
+.sprint-card{background:var(--white);border:1px solid var(--border);border-left:3px solid var(--border);border-radius:var(--radius);padding:10px 12px;margin-bottom:6px;cursor:grab;transition:box-shadow .1s,opacity .15s}
+.sprint-card:active{cursor:grabbing}
+.sprint-col-dragover{background:rgba(66,133,244,0.06);border-radius:var(--radius);transition:background .15s}
 .sprint-card:hover{box-shadow:var(--shadow)}
 .sprint-card.type-bug{border-left-color:var(--red)}
 .sprint-card.type-task{border-left-color:var(--yellow)}
@@ -822,7 +824,7 @@ function renderSprintBoardHtml(sprint){
 
   function cardHtml(item){
     const area=getArea(item.areaId);
-    return `<div class="sprint-card ${sprintCardTypeClass(item.type)}">
+    return `<div class="sprint-card ${sprintCardTypeClass(item.type)}" draggable="true" data-item-id="${item.id}" ondragstart="onSprintCardDragStart(event,${item.id})">
       <div style="display:flex;justify-content:space-between;align-items:center">
         <span class="sprint-card-id">#${item.id}</span>
         <span class="sprint-card-effort">${item.effort}</span>
@@ -865,19 +867,51 @@ function renderSprintBoardHtml(sprint){
     </div>
 
     <div class="sprint-board">
-      <div class="sprint-col">
+      <div class="sprint-col" data-state="New" ondragover="onSprintColDragOver(event)" ondragleave="onSprintColDragLeave(event)" ondrop="onSprintColDrop(event,'New',${sprint.id})">
         <div class="sprint-col-header col-new">New<span class="sprint-col-count">${newItems.length}</span></div>
         ${newItems.map(cardHtml).join('')}
       </div>
-      <div class="sprint-col">
+      <div class="sprint-col" data-state="Active" ondragover="onSprintColDragOver(event)" ondragleave="onSprintColDragLeave(event)" ondrop="onSprintColDrop(event,'Active',${sprint.id})">
         <div class="sprint-col-header col-active">Active<span class="sprint-col-count">${activeItems.length}</span></div>
         ${activeItems.map(cardHtml).join('')}
       </div>
-      <div class="sprint-col">
+      <div class="sprint-col" data-state="Done" ondragover="onSprintColDragOver(event)" ondragleave="onSprintColDragLeave(event)" ondrop="onSprintColDrop(event,'Done',${sprint.id})">
         <div class="sprint-col-header col-done">Done<span class="sprint-col-count">${doneItems.length}</span></div>
         ${doneItems.map(cardHtml).join('')}
       </div>
     </div>`;
+}
+
+/* Sprint board drag-and-drop */
+let _dragItemId=null;
+function onSprintCardDragStart(e,itemId){
+  _dragItemId=itemId;
+  e.dataTransfer.effectAllowed='move';
+  e.dataTransfer.setData('text/plain',itemId);
+  requestAnimationFrame(()=>{if(e.target.classList)e.target.style.opacity='0.4'});
+}
+function onSprintColDragOver(e){
+  e.preventDefault();
+  e.dataTransfer.dropEffect='move';
+  const col=e.currentTarget;
+  if(!col.classList.contains('sprint-col-dragover'))col.classList.add('sprint-col-dragover');
+}
+function onSprintColDragLeave(e){
+  const col=e.currentTarget;
+  if(!col.contains(e.relatedTarget))col.classList.remove('sprint-col-dragover');
+}
+function onSprintColDrop(e,newState,sprintId){
+  e.preventDefault();
+  const col=e.currentTarget;
+  col.classList.remove('sprint-col-dragover');
+  const itemId=parseInt(e.dataTransfer.getData('text/plain'),10);
+  if(!itemId)return;
+  const item=sprintItems.find(i=>i.id===itemId);
+  if(!item||item.state===newState)return;
+  item.state=newState;
+  showToast(`Moved #${item.id} to ${newState}`);
+  const container=document.getElementById('sprintBoardContainer');
+  if(container)container.innerHTML=renderSprintBoardHtml(sprints.find(s=>s.id===sprintId));
 }
 
 function renderSprintsPage(el){
