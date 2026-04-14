@@ -486,10 +486,10 @@ body{font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;background:va
 // ═══════════════════════════════════════════
 
 let areas = [
-  {id:1,name:'Innovation',status:'in-progress',parent:null,owner:'Alex Jensen',team:'Innovation Lab',maturity:'Developing',priority:'High',desc:'Driving forward-looking technology exploration, proof-of-concept development, emerging technology evaluation, and fostering a culture of continuous innovation across the organisation.',systems:['Idea Backlog','PoC Pipeline','Tech Radar','Innovation Hub']},
-  {id:2,name:'Digital Platforms',status:'healthy',parent:null,owner:'Sara Holm',team:'Platform Engineering',maturity:'Managed',priority:'High',desc:'Enterprise digital platforms, integration services, API ecosystems, and self-service portals enabling business agility and digital transformation.',systems:['Integration Platform','API Gateway','Self-Service Portal','Digital Workspace']},
-  {id:3,name:'Data & Analytics',status:'healthy',parent:null,owner:'Thomas Berg',team:'Data Platform',maturity:'Optimizing',priority:'High',desc:'Enterprise data platform, business intelligence, data governance, and advanced analytics capabilities powering data-driven decisions across all business units.',systems:['Data Lakehouse','BI Platform','ETL Pipeline','Data Catalogue']},
-  {id:4,name:'IDC Management',status:'warning',parent:null,owner:'Lars Dahl',team:'IDC Operations',maturity:'Defined',priority:'High',desc:'Internet Data Centre operations, physical infrastructure, capacity planning, environmental controls, and facility management ensuring 24/7 availability.',systems:['DCIM Platform','Monitoring Stack','Capacity Planner','Incident Tracker']},
+  {id:1,name:'Innovation',status:'in-progress',parent:null,owner:'Jesper',team:'Innovation Lab',maturity:'Developing',priority:'High',desc:'Driving forward-looking technology exploration, proof-of-concept development, emerging technology evaluation, and fostering a culture of continuous innovation across the organisation.',systems:['Idea Backlog','PoC Pipeline','Tech Radar','Innovation Hub']},
+  {id:2,name:'Digital Platforms',status:'healthy',parent:null,owner:'Pernille',team:'Platform Engineering',maturity:'Managed',priority:'High',desc:'Enterprise digital platforms, integration services, API ecosystems, and self-service portals enabling business agility and digital transformation.',systems:['Integration Platform','API Gateway','Self-Service Portal','Digital Workspace']},
+  {id:3,name:'Data & Analytics',status:'healthy',parent:null,owner:'Michael Aae',team:'Data Platform',maturity:'Optimizing',priority:'High',desc:'Enterprise data platform, business intelligence, data governance, and advanced analytics capabilities powering data-driven decisions across all business units.',systems:['Data Lakehouse','BI Platform','ETL Pipeline','Data Catalogue']},
+  {id:4,name:'IDC Management',status:'warning',parent:null,owner:'Michael N',team:'IDC Operations',maturity:'Defined',priority:'High',desc:'Internet Data Centre operations, physical infrastructure, capacity planning, environmental controls, and facility management ensuring 24/7 availability.',systems:['DCIM Platform','Monitoring Stack','Capacity Planner','Incident Tracker']},
 ];
 let nextAreaId = 5;
 
@@ -530,18 +530,18 @@ let sprints = [
 
 let sprintItems = [
   // Sprint 24.7 — IDC Management items
-  {id:101,sprintId:1,title:'Deploy environmental sensors in Hall B',areaId:4,assignee:'Lars Dahl',state:'Done',type:'Task',effort:5,priority:'High'},
-  {id:102,sprintId:1,title:'Complete rack capacity audit for rows 1-12',areaId:4,assignee:'Katrine Lund',state:'Done',type:'Task',effort:8,priority:'High'},
-  {id:103,sprintId:1,title:'Fix false alerts on cooling unit C3',areaId:4,assignee:'Lars Dahl',state:'Active',type:'Bug',effort:3,priority:'High'},
-  {id:104,sprintId:1,title:'Update DCIM asset records for Q1 hardware refresh',areaId:4,assignee:'Sara Holm',state:'Active',type:'Task',effort:5,priority:'Medium'},
-  {id:105,sprintId:1,title:'Implement automated power failover test procedure',areaId:4,assignee:'Thomas Berg',state:'Active',type:'User Story',effort:8,priority:'High'},
-  {id:106,sprintId:1,title:'Document cable management standards for new racks',areaId:4,assignee:'Katrine Lund',state:'New',type:'Task',effort:3,priority:'Medium'},
-  {id:107,sprintId:1,title:'Review and update IDC access control policies',areaId:4,assignee:'Alex Jensen',state:'New',type:'Task',effort:3,priority:'High'},
-  {id:108,sprintId:1,title:'Set up monitoring dashboard for PUE tracking',areaId:4,assignee:'Lars Dahl',state:'New',type:'User Story',effort:5,priority:'Medium'},
+  {id:101,sprintId:1,title:'Deploy environmental sensors in Hall B',areaId:4,assignee:'Michael N',state:'Done',type:'Task',effort:5,priority:'High'},
+  {id:102,sprintId:1,title:'Complete rack capacity audit for rows 1-12',areaId:4,assignee:'Mette',state:'Done',type:'Task',effort:8,priority:'High'},
+  {id:103,sprintId:1,title:'Fix false alerts on cooling unit C3',areaId:4,assignee:'Michael N',state:'Active',type:'Bug',effort:3,priority:'High'},
+  {id:104,sprintId:1,title:'Update DCIM asset records for Q1 hardware refresh',areaId:4,assignee:'Pernille',state:'Active',type:'Task',effort:5,priority:'Medium'},
+  {id:105,sprintId:1,title:'Implement automated power failover test procedure',areaId:4,assignee:'Michael Aae',state:'Active',type:'User Story',effort:8,priority:'High'},
+  {id:106,sprintId:1,title:'Document cable management standards for new racks',areaId:4,assignee:'Mette',state:'New',type:'Task',effort:3,priority:'Medium'},
+  {id:107,sprintId:1,title:'Review and update IDC access control policies',areaId:4,assignee:'Jesper',state:'New',type:'Task',effort:3,priority:'High'},
+  {id:108,sprintId:1,title:'Set up monitoring dashboard for PUE tracking',areaId:4,assignee:'Michael N',state:'New',type:'User Story',effort:5,priority:'Medium'},
   // Sprint 24.8 — IDC Management items
-  {id:201,sprintId:2,title:'Install energy-efficient cooling in Hall A',areaId:4,assignee:'Lars Dahl',state:'New',type:'Task',effort:8,priority:'High'},
-  {id:202,sprintId:2,title:'Automate incident escalation for critical IDC alerts',areaId:4,assignee:'Thomas Berg',state:'New',type:'User Story',effort:5,priority:'High'},
-  {id:203,sprintId:2,title:'Capacity planning model for next 12 months',areaId:4,assignee:'Sara Holm',state:'New',type:'Task',effort:8,priority:'Medium'},
+  {id:201,sprintId:2,title:'Install energy-efficient cooling in Hall A',areaId:4,assignee:'Michael N',state:'New',type:'Task',effort:8,priority:'High'},
+  {id:202,sprintId:2,title:'Automate incident escalation for critical IDC alerts',areaId:4,assignee:'Michael Aae',state:'New',type:'User Story',effort:5,priority:'High'},
+  {id:203,sprintId:2,title:'Capacity planning model for next 12 months',areaId:4,assignee:'Pernille',state:'New',type:'Task',effort:8,priority:'Medium'},
 ];
 let nextSprintItemId = 300;
 
@@ -550,11 +550,11 @@ let nextSprintItemId = 300;
 // ═══════════════════════════════════════════
 
 let users = [
-  {id:1, name:'Alex Jensen', email:'', role:'write', avatar:'AJ'},
-  {id:2, name:'Sara Holm', email:'', role:'write', avatar:'SH'},
-  {id:3, name:'Thomas Berg', email:'', role:'write', avatar:'TB'},
-  {id:4, name:'Lars Dahl', email:'', role:'write', avatar:'LD'},
-  {id:5, name:'Katrine Lund', email:'', role:'write', avatar:'KL'},
+  {id:1, name:'Jesper', email:'', role:'write', avatar:'J'},
+  {id:2, name:'Pernille', email:'', role:'write', avatar:'P'},
+  {id:3, name:'Michael Aae', email:'', role:'write', avatar:'MA'},
+  {id:4, name:'Michael N', email:'', role:'write', avatar:'MN'},
+  {id:5, name:'Mette', email:'', role:'write', avatar:'M'},
 ];
 let nextUserId = 6;
 let currentUser = null; // set on login
